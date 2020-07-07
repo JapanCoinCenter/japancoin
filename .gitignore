@@ -129,3 +129,4 @@ db4/
 cmake-build-debug/
 CmakeLists.txt
 .idia/
+/.idea/
