@@ -128,3 +128,4 @@ db4/
 # the others
 cmake-build-debug/
 CmakeLists.txt
+.idia/
