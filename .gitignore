@@ -130,3 +130,5 @@ cmake-build-debug/
 CmakeLists.txt
 .idia/
 /.idea/
+!depends/Makefile
+
