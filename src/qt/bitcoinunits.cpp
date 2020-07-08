@@ -45,7 +45,7 @@ QString BitcoinUnits::longName(int unit)
     case BTC: return QString("JPC");
     case mBTC: return QString("mJPC");
     case uBTC: return QString("uJPC");
-    case SAT: return QString("nJPC");
+    case SAT: return QString("sJPC");
     default: return QString("???");
     }
 }
@@ -67,7 +67,7 @@ QString BitcoinUnits::description(int unit)
     case BTC: return QString("JapanCoins");
     case mBTC: return QString("milli JPC (1 / 1" THIN_SP_UTF8 "000)");
     case uBTC: return QString("micro JPC (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
-    case SAT: return QString("nano JPC (1 / 100" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
+    case SAT: return QString("sat JPC (1 / 100" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
     default: return QString("???");
     }
 }
