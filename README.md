@@ -1,80 +1,127 @@
-JapanCoin Core integration/staging tree
+*JapanCoin*
 =====================================
+![jcoin_nsis-header](https://user-images.githubusercontent.com/67356715/87230042-eed4b300-c3e7-11ea-8994-d648a194622c.png)
 
-[![Build Status](https://travis-ci.org/japancoin-project/japancoin.svg?branch=master)](https://travis-ci.org/japancoin-project/japancoin)
+オフィシャルサイト：https://japancoin.jp
 
-https://japancoin.org
-
-What is JapanCoin?
+*JapanCoin*とは?
 ----------------
+*JapanCoinは*、他の仮想通貨とは違い、暗号資産や送金などが目的では無く、「気持ち」を送るために利用される仮想コインとして使うために作成しております(2020夏頃公開予定)。
 
-JapanCoin is an experimental digital currency that enables instant payments to
-anyone, anywhere in the world. JapanCoin uses peer-to-peer technology to operate
-with no central authority: managing transactions and issuing money are carried
-out collectively by the network. JapanCoin Core is the name of open source
-software which enables the use of this currency.
+詳しくはオフィシャルサイトをご覧ください。
 
-For more information, as well as an immediately useable, binary version of
-the JapanCoin Core software, see [https://japancoin.org](https://japancoin.org).
+技術的な概要
+----------------
+LiteCoin Core v0.18.1を元に創られた仮想コインでアルゴリズムをはじめ技術的な仕様はほぼLiteCoinと同じです。
 
-License
--------
+このプロジェクトの現状
+----------------
+開発途上でまだ仕様も固まっているとは言えない段階ですので、今後発行済みブロックチェーンのリセットを含め仕様の変更があるかもしれません。
 
-JapanCoin Core is released under the terms of the MIT license. See [COPYING](COPYING) for more
-information or see https://opensource.org/licenses/MIT.
+テスト段階だと思ってください。間違ってもがっつりマイニングしてもなにもいいことがないとおもわれます。
 
-Development Process
--------------------
+マイニングについて
+----------------
+***JapanCoin*** **は全く資産価値のないコインですので発掘難易度がとても低く簡単にマイニングが可能です**。
 
-The `master` branch is regularly built and tested, but is not guaranteed to be
-completely stable. [Tags](https://github.com/japancoin-project/japancoin/tags) are created
-regularly to indicate new official, stable release versions of JapanCoin Core.
+Bitcoinや一般的なオルトコインだとソロマイニングだと現実的ではありませんが、JapanCoinは容易に発掘が可能です。
 
-The contribution workflow is described in [CONTRIBUTING.md](CONTRIBUTING.md)
-and useful hints for developers can be found in [doc/developer-notes.md](doc/developer-notes.md).
+基本的にLitecoinと同じアルゴリズムですのでLitecoinと同じようにcpuminer, ccminer, cgminerなどでマイニングすることも可能ですがこのプログラム単体でもマイニング可能です。
 
-The developer [mailing list](https://groups.google.com/forum/#!forum/japancoin-dev)
-should be used to discuss complicated or controversial changes before working
-on a patch set.
+japancoind を下記のようにdeprecatedrpcオプションをつけて起動し、
 
-Developer IRC can be found on Freenode at #japancoin-dev.
+```$ japancoind -deprecatedrpc=generate```
 
-Testing
--------
+japancoin-cliで下記のようにすると1ブロックマイニングすることができます。成功すると生成されたハッシュが表示されます。失敗した場合は[]だけが表示されます。
 
-Testing and code review is the bottleneck for development; we get more pull
-requests than we can review and test on short notice. Please be patient and help out by testing
-other people's pull requests, and remember this is a security-critical project where any mistake might cost people
-lots of money.
+```$ japancoin-cli generate 1```
 
-### Automated Testing
+現在、試験的にマイニングを行っておりますが、難易度に非常にムラがあるもののタイミングによっては上記方法でもマイニング可能だと思われます(2020年7月上旬時点)。
 
-Developers are strongly encouraged to write [unit tests](src/test/README.md) for new code, and to
-submit new unit tests for old code. Unit tests can be compiled and run
-(assuming they weren't disabled in configure) with: `make check`. Further details on running
-and extending unit tests can be found in [/src/test/README.md](/src/test/README.md).
+マイニング難易度が低いこと以外は一般的なオルトコインと同じですので、cgminerなどのマイニング用プログラムでのマイニング興味があるかたはそれぞれ適当にググって調べてください。
+※やっつけですみません、余裕ができればもう少し導入しやすい説明文を書きます。
 
-There are also [regression and integration tests](/test), written
-in Python, that are run automatically on the build server.
-These tests can be run (if the [test dependencies](/test) are installed) with: `test/functional/test_runner.py`
+ところで、現在の発掘報酬は1ブロック当たり50JPCですが、50JPCもあれば充分だと思います。繰り返しになりますがこのコインはがっつりマイニングしておいて上場したときに売却益を狙う類のコインではありません。
 
-The Travis CI system makes sure that every pull request is built for Windows, Linux, and macOS, and that unit/sanity tests are run automatically.
+お金や物を渡すほどではないけどありがとうと思ったときに感謝の気持ちをなんとなく伝えるために送るのを想定しているので、1mJPCずつ送るなら50JPCでなん万回も送れちゃいます。
 
-### Manual Quality Assurance (QA) Testing
+利用の開始について
+----------------
+申し訳ありませんが、現在バイナリ形式での配布をしていませんので、お使いの環境に合わせてコンパイル、ビルドしていただく必要がございます。
 
-Changes should be tested by somebody other than the developer who wrote the
-code. This is especially important for large or high-risk changes. It is useful
-to add a test plan to the pull request description if testing the changes is
-not straightforward.
+基本的にLitecoinと同じようにコンパイルできるので分からないことがあればLitecoinについての情報が役に立つかと思います。
 
-Translations
-------------
+### Windows
+詳しくは 　
+https://github.com/JapanCoinCenter/japancoin/blob/master/doc/build-windows.md  
+をご覧ください(英語のままですみません)。
 
-We only accept translation fixes that are submitted through [Bitcoin Core's Transifex page](https://www.transifex.com/projects/p/bitcoin/).
-Translations are converted to JapanCoin periodically.
+※**あまりにも面倒だと思う**ので一応コンパイル済みのバイナリをアップロードしておきます(64bit用です)。
 
-Translations are periodically pulled from Transifex and merged into the git repository. See the
-[translation process](doc/translation_process.md) for details on how this works.
+[japancoin-20200712.zip](https://japancoin.jp/release/japancoin-20200712.zip)
 
-**Important**: We do not accept translation changes as GitHub pull requests because the next
-pull from Transifex would automatically overwrite them again.
+**WSL(Windows Subsystem for Linux)が必要になるなど大変面倒で時間のかかるいばらの道です。**
+
+WSLのセットアップについては別途お調べください。
+
+私の場合は WSL2でUbunt18.04をで比較的すんなりビルド出来ました。
+
+ただ WSL2を使ったせいかやたらとmakeに時間がかかりました。
+
+### Linux
+詳しくは 　
+https://github.com/JapanCoinCenter/japancoin/blob/master/doc/build-unix.md  
+をご覧ください(英語のままですみません)。
+
+Ubunt16.04 より新しいUbuntuやLinux mintなどでは protocのバージョンが新しすぎるためかうまくmakeできません。
+$ autogen.sh
+を実行する前に
+$ protoc --version
+でprotocのバージョンを確認し、表示されるバージョンが 3.X.X など 2.6.X より新しい場合は、下記手順でprotocのバージョンを下げることができますが、環境に影響を及ぼす可能性がありますのでご注意ください。
+~~~
+$ sudo apt-get install -y libgcc1 gdebi
+$ wget http://archive.ubuntu.com/ubuntu/pool/main/p/protobuf/libprotoc-dev_2.6.1-1.3_amd64.deb
+$ wget http://archive.ubuntu.com/ubuntu/pool/main/p/protobuf/libprotoc9v5_2.6.1-1.3_amd64.deb
+$ wget http://archive.ubuntu.com/ubuntu/pool/main/p/protobuf/libprotobuf9v5_2.6.1-1.3_amd64.deb
+$ wget http://archive.ubuntu.com/ubuntu/pool/main/p/protobuf/libprotobuf-dev_2.6.1-1.3_amd64.deb
+$ wget http://archive.ubuntu.com/ubuntu/pool/main/p/protobuf/libprotobuf-lite9v5_2.6.1-1.3_amd64.deb
+$ wget http://archive.ubuntu.com/ubuntu/pool/main/p/protobuf/protobuf-compiler_2.6.1-1.3_amd64.deb
+$ sudo gdebi libprotobuf9v5_2.6.1-1.3_amd64.deb
+$ sudo gdebi libprotoc9v5_2.6.1-1.3_amd64.deb
+$ sudo apt remove libprotobuf-dev
+# 念のため削除されるパッケージを確認してください。
+$ sudo gdebi libprotobuf-lite9v5_2.6.1-1.3_amd64.deb
+$ sudo gdebi libprotobuf-dev_2.6.1-1.3_amd64.deb
+$ sudo gdebi libprotoc-dev_2.6.1-1.3_amd64.deb
+$ sudo apt remove protobuf-compiler
+$ sudo gdebi protobuf-compiler_2.6.1-1.3_amd64.deb
+$ protoc --version
+libprotoc 2.6.1
+~~~
+
+Ubuntu 16.04での流れを簡易にまとめると以下のようになります。
+
+~~~
+$ sudo apt-get update
+$ sudo apt-get install -y git build-essential libtool autotools-dev automake pkg-config bsdmainutils python3 libssl-dev libevent-dev libboost-system-dev libboost-filesystem-dev libboost-chrono-dev libboost-test-dev libboost-thread-dev libminiupnpc-dev libzmq3-dev libqt5gui5 libqt5core5a libqt5dbus5 qttools5-dev qttools5-dev-tools libqrencode-dev libboost-system-dev libboost-filesystem-dev libboost-chrono-dev libboost-program-options-dev libboost-test-dev libboost-thread-dev libprotobuf-dev protobuf-compilersudo apt-get install -y build-essential libtool autotools-dev automake pkg-config bsdmainutils python3
+$ git clone https://github.com/JapanCoinCenter/japancoin.git
+$ cd japancoin
+$ ./contrib/install_db4.sh `pwd`
+# 上記コマンドで最後の方に表示される `export ~' を実行すある
+# ↓例
+# $ export BDB_PREFIX='/home/mydir/japancoin/db4'
+$ ./autogen.sh
+$ ./configure BDB_LIBS="-L${BDB_PREFIX}/lib -ldb_cxx-4.8" BDB_CFLAGS="-I${BDB_PREFIX}/include"
+# もしVPS等でメモリが1.5G未満など極端に少ない場合は以下のようにCXXFLAGSオプションを使用する
+# $ ./configure BDB_LIBS="-L${BDB_PREFIX}/lib -ldb_cxx-4.8" BDB_CFLAGS="-I${BDB_PREFIX}/include" CXXFLAGS="--param ggc-min-expand=1 --param ggc-min-heapsize=32768"
+$ make
+$ makeはそこそこ時間がかかります(30分以上?)。
+$ sudo make install
+~~~
+
+### macOS
+詳しくは 　
+https://github.com/JapanCoinCenter/japancoin/blob/master/doc/build-osx.md  
+をご覧ください(英語のままですみません)。
+
+すみません、まだmacOS上でテストしていません。そのうちやります。

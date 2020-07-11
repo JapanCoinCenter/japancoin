@@ -132,3 +132,4 @@ CmakeLists.txt
 /.idea/
 !depends/Makefile
 
+/JapanCoin_WinDsk.iml
