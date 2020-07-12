@@ -76,6 +76,8 @@ WSLのセットアップについては別途お調べください。
 https://github.com/JapanCoinCenter/japancoin/blob/master/doc/build-unix.md  
 をご覧ください(英語のままですみません)。
 
+#### Ubuntu/Linux mint
+
 Ubunt16.04 より新しいUbuntuやLinux mintなどでは protocのバージョンが新しすぎるためかうまくmakeできません。
 $ autogen.sh
 を実行する前に
@@ -102,7 +104,7 @@ $ protoc --version
 libprotoc 2.6.1
 ~~~
 
-Ubuntu 16.04での流れを簡易にまとめると以下のようになります。
+Ubuntu 16.04 での流れを簡易にまとめると以下のようになります。
 
 ~~~
 $ sudo apt-get update
@@ -119,6 +121,36 @@ $ ./configure BDB_LIBS="-L${BDB_PREFIX}/lib -ldb_cxx-4.8" BDB_CFLAGS="-I${BDB_PR
 # $ ./configure BDB_LIBS="-L${BDB_PREFIX}/lib -ldb_cxx-4.8" BDB_CFLAGS="-I${BDB_PREFIX}/include" CXXFLAGS="--param ggc-min-expand=1 --param ggc-min-heapsize=32768"
 $ make
 $ makeはそこそこ時間がかかります(30分以上?)。
+$ sudo make install
+~~~
+#### CentOS
+CentOS 8 での流れを簡易にまとめると以下のようになります。  
+※GUI無しでコンパイルした時の手順です。
+※sudoを許可したユーザーでの作業例です。
+~~~
+$ sudo dnf install gcc-c++ libtool make autoconf automake openssl-devel libevent-devel boost-devel
+$ git clone https://github.com/JapanCoinCenter/japancoin.git
+$ cd japancoin
+$ JAPANCOIN_ROOT=$(pwd)
+$ BDB_PREFIX="${JAPANCOIN_ROOT}/db4"
+$ mkdir -p $BDB_PREFIX
+$ wget 'http://download.oracle.com/berkeley-db/db-4.8.30.NC.tar.gz'
+$ tar -xzvf db-4.8.30.NC.tar.gz 
+$ chmod u+w db-4.8.30.NC/dbinc/atomic.h
+$ vi db-4.8.30.NC/dbinc/atomic.h
+# japancoin/db-4.8.30.NC/dbinc/atomic.h を修正(読み込み専用になっている)
+147行目と179 行目の
+__atomic_compare_exchange
+を
+__atomic_compare_exchange_db
+に書き換える
+$ cd db-4.8.30.NC/build_unix/
+$ ../dist/configure --enable-cxx --disable-shared --with-pic --prefix=$BDB_PREFIX
+$ make install
+$ cd $JAPANCOIN_ROOT
+$ ./autogen.sh
+$ ./configure LDFLAGS="-L${BDB_PREFIX}/lib/" CPPFLAGS="-I${BDB_PREFIX}/include/"  --without-gui
+$ make
 $ sudo make install
 ~~~
 
